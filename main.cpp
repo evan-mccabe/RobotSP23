@@ -3,7 +3,7 @@
 int main(void)
 {
     
-    //Hello World
+    //Hello World, test
     
     LCD.Clear(BLACK);
     LCD.WriteLine("Hello, World!");
