@@ -10,15 +10,24 @@ DigitalEncoder left_encoder(FEHIO::P3_1);
 FEHMotor right_motor(FEHMotor::Motor0,9.0);
 FEHMotor left_motor(FEHMotor::Motor1,9.0);
 
-void move_forward(int percent, int counts) //using encoders
+float inchesCount = 40.49; 
+
+float degreesCount = 2.959238472;
+
+int lmp = 26;
+int rmp = 25;
+
+void move_forward(float inches) //using encoders
 {
+    int counts = inches*inchesCount;
+    
     //Reset encoder counts
     right_encoder.ResetCounts();
     left_encoder.ResetCounts();
 
     //Set both motors to desired percent
-    right_motor.SetPercent(percent);
-    left_motor.SetPercent(percent);
+    right_motor.SetPercent(rmp);
+    left_motor.SetPercent(lmp);
 
     //While the average of the left and right encoder is less than counts,
     //keep running motors
@@ -29,15 +38,17 @@ void move_forward(int percent, int counts) //using encoders
     left_motor.Stop();
 }
 
-void left_turn(int percent, int counts){
+void left_turn(float degrees){
+
+    int counts = degrees*3.2;
 
     //Reset encoder counts
     right_encoder.ResetCounts();
     left_encoder.ResetCounts();
 
     //Set both motors to desired percent
-    right_motor.SetPercent(percent);
-    left_motor.SetPercent(-1*percent);
+    right_motor.SetPercent(rmp);
+    left_motor.SetPercent(-1*lmp);
 
     //While the average of the left and right encoder is less than counts,
     //keep running motors
@@ -50,15 +61,15 @@ void left_turn(int percent, int counts){
 
 }
 
-void right_turn(int percent, int counts){
+void right_turn(int counts){
 
     //Reset encoder counts
     right_encoder.ResetCounts();
     left_encoder.ResetCounts();
 
     //Set both motors to desired percent
-    right_motor.SetPercent(-1*percent);
-    left_motor.SetPercent(percent);
+    right_motor.SetPercent(-1*rmp);
+    left_motor.SetPercent(lmp);
 
     //While the average of the left and right encoder is less than counts,
     //keep running motors
@@ -73,7 +84,7 @@ void right_turn(int percent, int counts){
 
 int main(void)
 {
-    int motor_percent = 25; //Input power level here
+    
 
     float x, y; //for touch screen
 
@@ -86,13 +97,7 @@ int main(void)
     while(!LCD.Touch(&x,&y)); //Wait for screen to be pressed
     while(LCD.Touch(&x,&y)); //Wait for screen to be unpressed
 
-    move_forward(motor_percent, 565); //see function
-    left_turn(motor_percent, 222);
-    move_forward(motor_percent,405);
-    right_turn(motor_percent,222);
-    move_forward(motor_percent,162);
-
-    
+    move_forward(20); //see function
 
     Sleep(2.0); //Wait for counts to stabilize
 
