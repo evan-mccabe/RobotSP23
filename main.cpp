@@ -3,6 +3,7 @@
 #include <FEHUtility.h>
 #include <FEHMotor.h>
 #include <FEHRPS.h>
+#include <math.h>
 
 //Declarations for encoders & motors
 DigitalEncoder right_encoder(FEHIO::P3_0);
@@ -36,6 +37,27 @@ void move_forward(float inches)
     //While the average of the left and right encoder is less than counts,
     //keep running motors
     while((left_encoder.Counts() + right_encoder.Counts()) / 2. < counts);
+
+    //Turn off motors
+    right_motor.Stop();
+    left_motor.Stop();
+}
+
+void move_backward(float inches)
+{
+    int counts = inches*inchesCount;
+    
+    //Reset encoder counts
+    right_encoder.ResetCounts();
+    left_encoder.ResetCounts();
+
+    //Set both motors to desired percent
+    right_motor.SetPercent(-rmp);
+    left_motor.SetPercent(-lmp);
+
+    //While the average of the left and right encoder is less than counts,
+    //keep running motors
+    while(abs((left_encoder.Counts() + right_encoder.Counts()))/ 2. < counts);
 
     //Turn off motors
     right_motor.Stop();
@@ -141,9 +163,11 @@ int main(void)
         left_motor.SetPercent(lmp);
     }
 
+
+
     right_motor.SetPercent(0);
     left_motor.SetPercent(0);
-    
+
     
 
     Sleep(2.0); //Wait for counts to stabilize
