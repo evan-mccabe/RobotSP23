@@ -5,10 +5,10 @@
 #include <FEHRPS.h>
 
 //Declarations for encoders & motors
-DigitalEncoder right_encoder(FEHIO::P0_0);
-DigitalEncoder left_encoder(FEHIO::P0_1);
-FEHMotor right_motor(FEHMotor::Motor1,9.0);
-FEHMotor left_motor(FEHMotor::Motor0,9.0);
+DigitalEncoder right_encoder(FEHIO::P3_0);
+DigitalEncoder left_encoder(FEHIO::P3_1);
+FEHMotor right_motor(FEHMotor::Motor0,9.0);
+FEHMotor left_motor(FEHMotor::Motor1,9.0);
 
 void move_forward(int percent, int counts) //using encoders
 {
