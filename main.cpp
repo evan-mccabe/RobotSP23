@@ -5,137 +5,17 @@
 #include <FEHRPS.h>
 #include <math.h>
 
-//Declarations for encoders & motors
-DigitalEncoder right_encoder(FEHIO::P3_0);
-DigitalEncoder left_encoder(FEHIO::P3_1);
-FEHMotor right_motor(FEHMotor::Motor0,9.0);
-FEHMotor left_motor(FEHMotor::Motor1,9.0);
-DigitalInputPin rfmicro(FEHIO::P2_0);
-DigitalInputPin lfmicro(FEHIO::P2_1);
+//Include constants
+#include <constants.h>
 
+//Include object port declarations
+#include <declarations.h>
 
-
-float inchesCount = 40.49; 
-
-float degreesCount = 2.959238472;
-
-int lmp = 25;
-int rmp = 25;
-
-void move_forward(float inches)
-{
-    int counts = inches*inchesCount;
-    
-    //Reset encoder counts
-    right_encoder.ResetCounts();
-    left_encoder.ResetCounts();
-
-    //Set both motors to desired percent
-    right_motor.SetPercent(rmp);
-    left_motor.SetPercent(lmp);
-
-    //While the average of the left and right encoder is less than counts,
-    //keep running motors
-    while((left_encoder.Counts() + right_encoder.Counts()) / 2. < counts);
-
-    //Turn off motors
-    right_motor.Stop();
-    left_motor.Stop();
-}
-
-void move_backward(float inches)
-{
-    int counts = inches*inchesCount;
-    
-    //Reset encoder counts
-    right_encoder.ResetCounts();
-    left_encoder.ResetCounts();
-
-    //Set both motors to desired percent
-    right_motor.SetPercent(-rmp);
-    left_motor.SetPercent(-lmp);
-
-    //While the average of the left and right encoder is less than counts,
-    //keep running motors
-    while(abs((left_encoder.Counts() + right_encoder.Counts()))/ 2. < counts);
-
-    //Turn off motors
-    right_motor.Stop();
-    left_motor.Stop();
-}
-
-void ramp(float inches)
-{
-    int counts = inches*inchesCount;
-    
-    //Reset encoder counts
-    right_encoder.ResetCounts();
-    left_encoder.ResetCounts();
-
-    //Set both motors to desired percent
-    right_motor.SetPercent(rmp*2);
-    left_motor.SetPercent(lmp*2);
-
-    //While the average of the left and right encoder is less than counts,
-    //keep running motors
-    while((left_encoder.Counts() + right_encoder.Counts()) / 2. < counts);
-
-    //Turn off motors
-    right_motor.Stop();
-    left_motor.Stop();
-}
-
-
-void left_turn(float degrees){
-
-    int counts = degrees*3.2;
-
-    //Reset encoder counts
-    right_encoder.ResetCounts();
-    left_encoder.ResetCounts();
-
-    //Set both motors to desired percent
-    right_motor.SetPercent(rmp);
-    left_motor.SetPercent(-1*lmp);
-
-    //While the average of the left and right encoder is less than counts,
-    //keep running motors
-    while(((left_encoder.Counts()) + right_encoder.Counts()) / 2. < counts);
-
-    //Turn off motors
-    right_motor.Stop();
-    left_motor.Stop();
-
-
-}
-
-void right_turn(int degrees){
-
-    int counts = degrees*3.2;
-
-    //Reset encoder counts
-    right_encoder.ResetCounts();
-    left_encoder.ResetCounts();
-
-    //Set both motors to desired percent
-    right_motor.SetPercent(-1*rmp);
-    left_motor.SetPercent(lmp);
-
-    //While the average of the left and right encoder is less than counts,
-    //keep running motors
-    while(((left_encoder.Counts()) + right_encoder.Counts()) / 2. < counts);
-
-    //Turn off motors
-    right_motor.Stop();
-    left_motor.Stop();
-
-
-}
+//Include movement functions
+#include <movement.h>
 
 int main(void)
-{
-    
-
+{   
     float x, y; //for touch screen
 
     //Initialize the screen
