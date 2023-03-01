@@ -22,14 +22,14 @@ int main(void)
     while(!LCD.Touch(&x,&y)); //Wait for screen to be pressed
     while(LCD.Touch(&x,&y)); //Wait for screen to be unpressed
 
-    while(cds.Value()>3){
+    while(cds.Value()>2){
     }
 
     //Navigate up the ramp and to the boarding pass kiosk
     right_turn(45);
-    move_forward(3);
+    move_forward(4);
     right_turn(10);
-    move_forward(2);
+    move_forward(4);
     left_turn(10);
     ramp(30);
     left_turn(45);
