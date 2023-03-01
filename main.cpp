@@ -31,7 +31,7 @@ int main(void)
     right_turn(10);
     move_forward(4);
     left_turn(10);
-    ramp(30);
+    ramp(26);
     left_turn(45);
     move_forward(13);
     right_turn(45);
@@ -39,9 +39,9 @@ int main(void)
     //Move forward until microswitches are both pressed
     int back = moveUntil();
 
-    move_backward(back);
+    move_backward(back+4);
     left_turn(45);
-    move_backward(13);
+    move_backward(11);
     right_turn(45);
     move_backward(30);
 
