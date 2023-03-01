@@ -22,11 +22,8 @@ int main(void)
     while(!LCD.Touch(&x,&y)); //Wait for screen to be pressed
     while(LCD.Touch(&x,&y)); //Wait for screen to be unpressed
 
-    while(1){
-        LCD.WriteLine(cds.Value());
-        Sleep(1.0);
+    while(cds.Value()>3){
     }
-
 
     //Navigate up the ramp and to the boarding pass kiosk
     right_turn(45);
@@ -40,7 +37,14 @@ int main(void)
     right_turn(45);
 
     //Move forward until microswitches are both pressed
-    moveUntil();
+    int back = moveUntil();
+
+    move_backward(back);
+    left_turn(45);
+    move_backward(13);
+    right_turn(45);
+    move_backward(30);
+
     
 
     Sleep(2.0); //Wait for counts to stabilize

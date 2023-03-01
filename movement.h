@@ -112,7 +112,11 @@ void right_turn(int degrees){
 
 }
 
-void moveUntil(){
+int moveUntil(){
+
+    //Reset encoder counts
+    right_encoder.ResetCounts();
+    left_encoder.ResetCounts();
 
 
     while ((lfmicro.Value()||rfmicro.Value())){
@@ -124,5 +128,7 @@ void moveUntil(){
 
     right_motor.SetPercent(0);
     left_motor.SetPercent(0);
+
+    return ((abs(left_encoder.Counts()+right_encoder.Counts()))/2.0)/inchesCount;
     
 }
