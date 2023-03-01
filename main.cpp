@@ -5,14 +5,9 @@
 #include <FEHRPS.h>
 #include <math.h>
 
-//Include constants
-#include <constants.h>
-
-//Include object port declarations
-#include <declarations.h>
-
 //Include movement functions
 #include <movement.h>
+
 
 int main(void)
 {   
@@ -26,6 +21,11 @@ int main(void)
     LCD.WriteLine("Touch the screen");
     while(!LCD.Touch(&x,&y)); //Wait for screen to be pressed
     while(LCD.Touch(&x,&y)); //Wait for screen to be unpressed
+
+    while(1){
+        LCD.WriteLine(cds.Value());
+        Sleep(1.0);
+    }
 
 
     //Navigate up the ramp and to the boarding pass kiosk

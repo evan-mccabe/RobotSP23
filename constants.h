@@ -1,3 +1,4 @@
+//Constants
 float inchesCount = 40.49; 
 
 float degreesCount = 2.959238472;

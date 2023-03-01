@@ -1,6 +1,7 @@
 #include <declarations.h>
 #include <constants.h>
 
+
 void move_forward(float inches)
 {
     int counts = inches*inchesCount;
