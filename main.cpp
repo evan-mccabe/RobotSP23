@@ -29,7 +29,6 @@ int main(void)
 
 
     //Navigate up the ramp and to the boarding pass kiosk
-
     right_turn(45);
     move_forward(3);
     right_turn(10);
