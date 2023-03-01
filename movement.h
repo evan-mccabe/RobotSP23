@@ -110,3 +110,18 @@ void right_turn(int degrees){
 
 
 }
+
+void moveUntil(){
+
+
+    while ((lfmicro.Value()||rfmicro.Value())){
+
+        right_motor.SetPercent(rmp);
+        left_motor.SetPercent(lmp);
+
+    }
+
+    right_motor.SetPercent(0);
+    left_motor.SetPercent(0);
+    
+}

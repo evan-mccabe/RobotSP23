@@ -27,6 +27,9 @@ int main(void)
     while(!LCD.Touch(&x,&y)); //Wait for screen to be pressed
     while(LCD.Touch(&x,&y)); //Wait for screen to be unpressed
 
+
+    //Navigate up the ramp and to the boarding pass kiosk
+
     right_turn(45);
     move_forward(3);
     right_turn(10);
@@ -37,17 +40,8 @@ int main(void)
     move_forward(13);
     right_turn(45);
 
-    while ((lfmicro.Value()||rfmicro.Value())){
-
-        right_motor.SetPercent(rmp);
-        left_motor.SetPercent(lmp);
-    }
-
-
-
-    right_motor.SetPercent(0);
-    left_motor.SetPercent(0);
-
+    //Move forward until microswitches are both pressed
+    moveUntil();
     
 
     Sleep(2.0); //Wait for counts to stabilize
