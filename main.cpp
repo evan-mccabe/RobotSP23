@@ -17,8 +17,7 @@ int main(void)
     LCD.Clear(BLACK);
     LCD.SetFontColor(WHITE);
 
-    LCD.WriteLine("Shaft Encoder Exploration Test");
-    LCD.WriteLine("Touch the screen");
+    LCD.WriteLine("Touch the screen to start");
     while(!LCD.Touch(&x,&y)); //Wait for screen to be pressed
     while(LCD.Touch(&x,&y)); //Wait for screen to be unpressed
 
