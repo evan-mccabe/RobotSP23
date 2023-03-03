@@ -25,6 +25,7 @@ int main(void)
     }
 
     //Navigate up the ramp and to the boarding pass kiosk
+    /*
     right_turn(45);
     move_forward(4);
     right_turn(10);
@@ -32,6 +33,8 @@ int main(void)
     left_turn(10);
     ramp(23);
     lineFollow();
+    */
+
     int color = detect();
     
     //Square off against tower
@@ -40,17 +43,22 @@ int main(void)
     //Press correct ticket button
     ticket(color);
 
-    move_backward(20);
+    move_backward(16);
     right_turn(90);
 
     moveUntil();
-    move_backward(4);
+    move_backward(.5);
     right_turn(90);
 
-    move_forward(20);
+    move_forward(28);
 
+    lmp=100;
+    rmp=100;
     right_turn(360);
-    
+
+    rmp=25;
+    lmp=25;
+
     Sleep(2.0); //Wait for counts to stabilize
 
 

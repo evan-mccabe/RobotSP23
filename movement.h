@@ -247,27 +247,33 @@ int detect(){
 
     int color;
 
-    if (cds.Value()<1){
+    if (cds.Value()<.5){
         color = Red;
     }else{
         color = Blue;
     }
+
+    LCD.WriteLine(cds.Value());
 
     return color;
 
 
 }
 
-void ticket(int color){
+void ticket(int c){
 
-    if (color == Blue){
-        move_backward(12);
+    if (c == Blue){
+        move_backward(10);
+        LCD.Clear();
+        LCD.SetBackgroundColor(BLUE);
        
     }
-    if (color == Red){
-        move_backward(23);
+    if (c == Red){
+        move_backward(18);
+        LCD.Clear();
+        LCD.SetBackgroundColor(RED);
     }
-    
+
     right_turn(45);
     moveUntil();
 
