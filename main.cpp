@@ -34,17 +34,23 @@ int main(void)
     lineFollow();
     int color = detect();
     
-    //Move forward until microswitches are both pressed
-    int back = moveUntil();
-
-    move_backward(back+4);
-    left_turn(45);
-    move_backward(11);
-    right_turn(45);
-    move_backward(30);
-
+    //Square off against tower
+    moveUntil();
     
+    //Press correct ticket button
+    ticket(color);
 
+    move_backward(20);
+    right_turn(90);
+
+    moveUntil();
+    move_backward(4);
+    right_turn(90);
+
+    move_forward(20);
+
+    right_turn(360);
+    
     Sleep(2.0); //Wait for counts to stabilize
 
 

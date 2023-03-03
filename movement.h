@@ -257,3 +257,19 @@ int detect(){
 
 
 }
+
+void ticket(int color){
+
+    if (color == Blue){
+        move_backward(12);
+       
+    }
+    if (color == Red){
+        move_backward(23);
+    }
+    
+    right_turn(45);
+    moveUntil();
+
+
+}
