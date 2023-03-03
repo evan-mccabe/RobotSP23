@@ -151,7 +151,7 @@ LEFT
 int state = MIDDLE; // Set the initial state
 
 //Follow the line while the cds cell isnt reading anything
-while (cds.Value()<2) {
+while (cds.Value()<3) {
 
 switch(state) {
 
@@ -237,5 +237,23 @@ Sleep(3);
 
 
 }
+
+right_motor.SetPercent(0);
+left_motor.SetPercent(0);
+
+}
+
+int detect(){
+
+    int color;
+
+    if (cds.Value()<1){
+        color = Red;
+    }else{
+        color = Blue;
+    }
+
+    return color;
+
 
 }

@@ -11,3 +11,13 @@ int lmp = 25;
 
 //Right motor percent
 int rmp = 25;
+
+//Colors for cds cell selection
+
+enum colors {
+
+Red,
+
+Blue
+
+};

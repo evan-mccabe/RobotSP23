@@ -30,11 +30,10 @@ int main(void)
     right_turn(10);
     move_forward(4);
     left_turn(10);
-    ramp(26);
-    left_turn(45);
-    move_forward(13);
-    right_turn(45);
-
+    ramp(23);
+    lineFollow();
+    int color = detect();
+    
     //Move forward until microswitches are both pressed
     int back = moveUntil();
 
