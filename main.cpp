@@ -25,7 +25,7 @@ int main(void)
     }
 
     //Navigate up the ramp and to the boarding pass kiosk
-    /*
+    
     right_turn(45);
     move_forward(4);
     right_turn(10);
@@ -33,7 +33,6 @@ int main(void)
     left_turn(10);
     ramp(23);
     lineFollow();
-    */
 
     int color = detect();
     
