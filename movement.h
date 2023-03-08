@@ -118,18 +118,21 @@ int moveUntil(){
     right_encoder.ResetCounts();
     left_encoder.ResetCounts();
 
-
+    //move until both microswitches are pressed
     while ((lfmicro.Value()||rfmicro.Value())){
 
         right_motor.SetPercent(rmp);
         left_motor.SetPercent(lmp);
 
-        Sleep(.5);
 
     }
 
+    Sleep(1);
+
+    //turn motors off
     right_motor.SetPercent(0);
     left_motor.SetPercent(0);
+
 
     return ((abs(left_encoder.Counts()+right_encoder.Counts()))/2.0)/inchesCount;
     
@@ -247,11 +250,13 @@ while (cont) {
 
     Sleep(3);
 
-    if ((TimeNow()-startTime)>=7){
+    if((TimeNow()-startTime)>=5){
+    if ((lopt.Value()>=2.7)&&(mopt.Value()>=2.7)&&(ropt.Value()>=2.7)){
 
         cont = false;
         LCD.WriteLine("End of line");
 
+    }
     }
 
 
@@ -268,22 +273,25 @@ int detect(){
 
     float value = 0;
 
-    if (cds.Value()<.5){
+    Sleep(2.0);
+
+    LCD.WriteLine(cds.Value());
+    if ((cds.Value())<1.1){
         color = Red;
         LCD.Clear();
-        //LCD.SetBackgroundColor(RED);
-        value = cds.Value();
+        LCD.SetBackgroundColor(RED);
+        
     }else{
         color = Blue;
         LCD.Clear();
-        //LCD.SetBackgroundColor(BLUE);
-        value = cds.Value();
+        LCD.SetBackgroundColor(BLUE);
+        
         
     }
     move_forward(.1);
 
 
-    LCD.WriteLine(value);
+    
     
     return color;
 
@@ -292,20 +300,43 @@ int detect(){
 
 void ticket(int c){
 
+    //If light is blue
     if (c == Blue){
         move_backward(11);
-        LCD.Clear();
-        LCD.SetBackgroundColor(BLUE);
+        right_turn(45);
+        float t = TimeNow();
+
+        //Move forward for 3 seconds to press button
+        while((TimeNow()-t)<3){
+            left_motor.SetPercent(25);
+            right_motor.SetPercent(25);
+        }
+        left_motor.SetPercent(0);
+        right_motor.SetPercent(0);
+
+        
        
     }
+    //If light is red
     if (c == Red){
-        move_backward(18);
-        LCD.Clear();
-        LCD.SetBackgroundColor(RED);
+        move_backward(17);
+        right_turn(45);
+
+        float t = TimeNow();
+
+        //Move forward for 5 seconds to press button
+        while((TimeNow()-t)<5){
+            left_motor.SetPercent(25);
+            right_motor.SetPercent(25);
+        }
+        
+        left_motor.SetPercent(0);
+        right_motor.SetPercent(0);
+        
     }
 
-    right_turn(45);
-    moveUntil();
+    
+    
 
 
 }

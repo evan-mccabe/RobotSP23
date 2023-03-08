@@ -48,22 +48,26 @@ int main(void)
 
     //Navigate up the ramp and to the boarding pass kiosk
     
+
     right_turn(45);
     move_forward(4);
     right_turn(10);
     move_forward(4);
-    left_turn(10);
-    ramp(23);
+    left_turn(12);
+    ramp(24);
     lineFollow();
     right_motor.SetPercent(0);
     left_motor.SetPercent(0);
     left_turn(15);
-    move_forward(1);
+    move_forward(2);
+
     int color = detect();
-    
+    left_turn(10);
+
     //Square off against tower
     moveUntil();
     
+
     //Press correct ticket button
     ticket(color);
 
@@ -84,8 +88,6 @@ int main(void)
     lmp=25;
 
     Sleep(2.0); //Wait for counts to stabilize
-
-
 
     return 0;
 }
