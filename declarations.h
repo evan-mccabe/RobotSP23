@@ -17,6 +17,6 @@ DigitalInputPin lfmicro(FEHIO::P2_1);
 AnalogInputPin cds(FEHIO::P1_0);
 
 //Optosensors
-AnalogInputPin ropt(FEHIO::P3_0);
-AnalogInputPin lopt(FEHIO::P3_2);
-AnalogInputPin mopt(FEHIO::P3_1);
+AnalogInputPin ropt(FEHIO::P0_0);
+AnalogInputPin lopt(FEHIO::P0_2);
+AnalogInputPin mopt(FEHIO::P0_1);

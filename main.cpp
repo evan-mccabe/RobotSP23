@@ -17,11 +17,33 @@ int main(void)
     LCD.Clear(BLACK);
     LCD.SetFontColor(WHITE);
 
+
+
     LCD.WriteLine("Touch the screen to start");
     while(!LCD.Touch(&x,&y)); //Wait for screen to be pressed
     while(LCD.Touch(&x,&y)); //Wait for screen to be unpressed
 
-    while(cds.Value()>2){
+    /*
+    while(1){
+
+        LCD.WriteLine("Right");
+        LCD.WriteLine(ropt.Value());
+        LCD.WriteLine("Middle");
+        LCD.WriteLine(mopt.Value());
+        LCD.WriteLine("Left");
+        LCD.WriteLine(lopt.Value());
+        LCD.WriteLine("CDS");
+        LCD.WriteLine(cds.Value());
+
+
+        Sleep(.5);
+
+        LCD.Clear();
+    }
+    */
+
+
+    while(cds.Value()>3){
     }
 
     //Navigate up the ramp and to the boarding pass kiosk
@@ -33,7 +55,10 @@ int main(void)
     left_turn(10);
     ramp(23);
     lineFollow();
-
+    right_motor.SetPercent(0);
+    left_motor.SetPercent(0);
+    left_turn(15);
+    move_forward(1);
     int color = detect();
     
     //Square off against tower

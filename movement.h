@@ -124,6 +124,8 @@ int moveUntil(){
         right_motor.SetPercent(rmp);
         left_motor.SetPercent(lmp);
 
+        Sleep(.5);
+
     }
 
     right_motor.SetPercent(0);
@@ -140,103 +142,120 @@ void lineFollow(){
 
 enum LineStates {
 
-MIDDLE,
+    MIDDLE,
 
-RIGHT,
+    RIGHT,
 
-LEFT
+    LEFT
 
 };
 
 int state = MIDDLE; // Set the initial state
 
-//Follow the line while the cds cell isnt reading anything
-while (cds.Value()<3) {
+bool cont = true;
 
-switch(state) {
+float startTime = TimeNow();
 
-// If I am in the middle of the line...
+//Follow the line while there is one
+while (cont) {
 
-case MIDDLE:
+    switch(state) {
 
-// Set motor powers for driving straight
+    // If I am in the middle of the line...
 
-right_motor.SetPercent(rmp);
-left_motor.SetPercent(lmp);
+    case MIDDLE:
 
-/* Drive */
+    // Set motor powers for driving straight
 
-if (ropt.Value()>2.0) {
+    right_motor.SetPercent(rmp);
+    left_motor.SetPercent(lmp);
 
-state = RIGHT; // update a new state
+    /* Drive */
 
-}
+    if (ropt.Value()<2.7) {
 
-/* Code for if left sensor is on the line */
+    state = RIGHT; // update a new state
+    LCD.WriteLine("RIGHT");
 
-if (lopt.Value()>2.0) {
+    }
 
-state = LEFT; // update a new state
+    /* Code for if left sensor is on the line */
 
-}
+    if (lopt.Value()<2.7) {
 
-break;
-
-// If the right sensor is on the line...
-
-case RIGHT:
-
-// Set motor powers for right turn
-
-left_motor.SetPercent(25);
-right_motor.SetPercent(0);
+    state = LEFT; // update a new state
+    LCD.WriteLine("LEFT");
 
 
-/* Drive */
+    }
 
-if(ropt.Value()<2.0) {
+    break;
 
-/* update a new state */
+    // If the right sensor is on the line...
 
-state=MIDDLE;
+    case RIGHT:
 
-}
+    // Set motor powers for right turn
 
-break;
-
-// If the left sensor is on the line...
-
-
-case LEFT:
-
-/* Mirror operation of RIGHT state */
-
-left_motor.SetPercent(0);
-right_motor.SetPercent(25);
-
-/* Drive */
-
-if(lopt.Value()<2.0) {
-
-/* update a new state */
-
-state=MIDDLE;
-
-}
-
-break;
-
-default: // Error. Something is very wrong.
-
-break;
+    left_motor.SetPercent(25);
+    right_motor.SetPercent(0);
 
 
-}
+    /* Drive */
 
-Sleep(3);
+    if(mopt.Value()<2.7) {
+
+    /* update a new state */
+
+    state=MIDDLE;
+    LCD.WriteLine("MIDDLE");
+
+    }
+
+    break;
+
+    // If the left sensor is on the line...
 
 
-}
+    case LEFT:
+
+    /* Mirror operation of RIGHT state */
+
+    left_motor.SetPercent(0);
+    right_motor.SetPercent(25);
+
+    /* Drive */
+
+    if(mopt.Value()<2.7) {
+
+    /* update a new state */
+
+    state=MIDDLE;
+    LCD.WriteLine("MIDDLE");
+
+    }
+
+    break;
+
+    default: // Error. Something is very wrong.
+
+    break;
+
+
+
+    }
+
+    Sleep(3);
+
+    if ((TimeNow()-startTime)>=7){
+
+        cont = false;
+        LCD.WriteLine("End of line");
+
+    }
+
+
+    }
 
 right_motor.SetPercent(0);
 left_motor.SetPercent(0);
@@ -247,14 +266,25 @@ int detect(){
 
     int color;
 
+    float value = 0;
+
     if (cds.Value()<.5){
         color = Red;
+        LCD.Clear();
+        //LCD.SetBackgroundColor(RED);
+        value = cds.Value();
     }else{
         color = Blue;
+        LCD.Clear();
+        //LCD.SetBackgroundColor(BLUE);
+        value = cds.Value();
+        
     }
+    move_forward(.1);
 
-    LCD.WriteLine(cds.Value());
 
+    LCD.WriteLine(value);
+    
     return color;
 
 
@@ -263,7 +293,7 @@ int detect(){
 void ticket(int c){
 
     if (c == Blue){
-        move_backward(10);
+        move_backward(11);
         LCD.Clear();
         LCD.SetBackgroundColor(BLUE);
        
