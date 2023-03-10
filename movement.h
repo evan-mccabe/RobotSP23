@@ -300,8 +300,12 @@ int detect(){
 
 void ticket(int c){
 
+    LCD.Clear();
+
     //If light is blue
     if (c == Blue){
+
+        LCD.WriteLine("Blue");
         move_backward(11);
         right_turn(45);
         float t = TimeNow();
@@ -319,6 +323,8 @@ void ticket(int c){
     }
     //If light is red
     if (c == Red){
+
+        LCD.WriteLine("Red");
         move_backward(17);
         right_turn(45);
 
