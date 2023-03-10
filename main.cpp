@@ -23,25 +23,6 @@ int main(void)
     while(!LCD.Touch(&x,&y)); //Wait for screen to be pressed
     while(LCD.Touch(&x,&y)); //Wait for screen to be unpressed
 
-    /*
-    while(1){
-
-        LCD.WriteLine("Right");
-        LCD.WriteLine(ropt.Value());
-        LCD.WriteLine("Middle");
-        LCD.WriteLine(mopt.Value());
-        LCD.WriteLine("Left");
-        LCD.WriteLine(lopt.Value());
-        LCD.WriteLine("CDS");
-        LCD.WriteLine(cds.Value());
-
-
-        Sleep(.5);
-
-        LCD.Clear();
-    }
-    */
-
 
     while(cds.Value()>3){
     }
@@ -54,9 +35,8 @@ int main(void)
     right_turn(10);
     move_forward(4);
     left_turn(12);
-    ramp(4);
-    Sleep(20);
-    ramp(20);
+    ramp(24);
+
     lineFollow();
     right_motor.SetPercent(0);
     left_motor.SetPercent(0);
