@@ -346,7 +346,7 @@ int main(void)
     C_heading = 90;
     D_heading = 0;
 
-    B_C_counts = (20*COUNTS_PER_INCH);
+    B_C_counts = (18*COUNTS_PER_INCH);
     C_D_counts = (20*COUNTS_PER_INCH);
 
     turn_90_counts = 85 * COUNTS_PER_DEGREE;
@@ -356,6 +356,10 @@ int main(void)
     // Open file pointer for writing
     fptr = SD.FOpen("RESULTS.txt", "w");
 
+    // COMPLETE CODE HERE TO WRITE EXPECTED AND ACTUAL POSITION INFORMATION TO SD CARD
+    SD.FPrintf(fptr, "Expected A Position: %f %f %f\n", A_x,A_y,A_heading);
+    SD.FPrintf(fptr, "Actual A Position:   %f %f %f\n\n", RPS.Y(),RPS.X(),RPS.Heading());
+
     // A --> B
     LCD.WriteLine("A");
     check_y(B_y, PLUS);
@@ -364,8 +368,8 @@ int main(void)
     Sleep(1.0);
     
     // COMPLETE CODE HERE TO WRITE EXPECTED AND ACTUAL POSITION INFORMATION TO SD CARD
-    SD.FPrintf(fptr, "Expected B Position: %f %f %f\n", B_y);
-    SD.FPrintf(fptr, "Actual B Position:   %f %f %f\n\n", RPS.Y());
+    SD.FPrintf(fptr, "Expected B Position: %f %f %f\n", B_x,B_y,B_heading);
+    SD.FPrintf(fptr, "Actual B Position:   %f %f %f\n\n", RPS.Y(),RPS.X(),RPS.Heading());
 
      //Log
 
@@ -378,8 +382,8 @@ int main(void)
     Sleep(1.0);
 
     // COMPLETE CODE HERE TO WRITE EXPECTED AND ACTUAL POSITION INFORMATION TO SD CARD
-    SD.FPrintf(fptr, "Expected C Position: %f %f %f\n", C_x);
-    SD.FPrintf(fptr, "Actual C Position:   %f %f %f\n\n", RPS.X());
+    SD.FPrintf(fptr, "Expected C Position: %f %f %f\n", C_x,C_y,C_heading);
+    SD.FPrintf(fptr, "Actual C Position:   %f %f %f\n\n", RPS.Y(),RPS.X(),RPS.Heading());
 
     // C --> D
     move_forward(POWER, C_D_counts);
@@ -391,8 +395,8 @@ int main(void)
     Sleep(1.0);
 
     // COMPLETE CODE HERE TO WRITE EXPECTED AND ACTUAL POSITION INFORMATION TO SD CARD
-    SD.FPrintf(fptr, "Expected D Position: %f %f %f\n", D_x);
-    SD.FPrintf(fptr, "Actual D Position:   %f %f %f\n\n", RPS.X());
+    SD.FPrintf(fptr, "Expected D Position: %f %f %f\n", D_x,D_y,D_heading);
+    SD.FPrintf(fptr, "Actual D Position:   %f %f %f\n\n", RPS.Y(),RPS.X(),RPS.Heading());
     
     // Close file pointer
     SD.FClose(fptr);
