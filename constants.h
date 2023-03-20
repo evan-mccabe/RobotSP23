@@ -21,3 +21,10 @@ Red,
 Blue
 
 };
+
+enum levers{
+a,
+a1,
+b
+
+};

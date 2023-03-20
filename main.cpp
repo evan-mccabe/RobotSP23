@@ -27,6 +27,13 @@ int main(void)
     while(cds.Value()>3){
     }
 
+
+    move_forward(15);
+    right_turn(225);
+
+    fuel();
+    
+    /*
     //Navigate up the ramp and to the boarding pass kiosk
     
 
@@ -68,6 +75,8 @@ int main(void)
 
     rmp=25;
     lmp=25;
+
+    */
 
     Sleep(2.0); //Wait for counts to stabilize
 
