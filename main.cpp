@@ -3,6 +3,7 @@
 #include <FEHUtility.h>
 #include <FEHMotor.h>
 #include <FEHRPS.h>
+#include <FEHServo.h>
 #include <math.h>
 
 //Include movement functions
@@ -23,6 +24,12 @@ int main(void)
     while(!LCD.Touch(&x,&y)); //Wait for screen to be pressed
     while(LCD.Touch(&x,&y)); //Wait for screen to be unpressed
 
+    //Set min and max for each servo
+    suitcase.SetMin(500);
+    suitcase.SetMax(2500);
+
+    arm.SetMin(550);
+    arm.SetMax(2450);
 
     while(cds.Value()>3){
     }
@@ -31,7 +38,9 @@ int main(void)
     move_forward(15);
     right_turn(225);
 
-    fuel();
+    //fuel();
+
+
     
     /*
     //Navigate up the ramp and to the boarding pass kiosk

@@ -349,25 +349,34 @@ void ticket(int c){
 
 void fuel(){
 
-   int lever = RPS.GetCorrectLever();
+    int lever = 0;
+
+    arm.SetDegree(45);
+    
+    //RPS.GetCorrectLever();
 
     if (lever == 0){
 
+
+        arm.SetDegree(10);
         move_backward(1);
 
-        //Add servo logic
+        arm.SetDegree(0);
+        Sleep(5.5);
+        arm.SetDegree(10);
+        
 
     }
     else if(lever == 1){
 
-        move_forward(2);
+        move_backward(2);
 
         //Add servo logic
 
     }
     else if(lever == 2){
 
-        move_forward(3);
+        move_backward(3);
 
         //Add servo logic
 

@@ -20,3 +20,15 @@ AnalogInputPin cds(FEHIO::P1_0);
 AnalogInputPin ropt(FEHIO::P0_0);
 AnalogInputPin lopt(FEHIO::P0_2);
 AnalogInputPin mopt(FEHIO::P0_1);
+
+//Arm
+FEHServo arm(FEHServo::Servo0);
+
+
+//Suitcase
+
+FEHServo suitcase(FEHServo::Servo1);
+
+//min is 500
+
+//max is 2500
