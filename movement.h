@@ -489,3 +489,17 @@ void check_heading(float heading)
 
     }
     }
+
+void passport(){
+
+    arm.SetDegree(179);
+    //move_backward(10);
+    Sleep(5.0);
+    arm.SetDegree(85);
+    arm.SetDegree(179);
+    Sleep(.5);
+    move_forward(10);
+
+
+
+}
