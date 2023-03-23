@@ -364,7 +364,7 @@ void fuel(){
         arm.SetDegree(28);
         arm.SetDegree(8);
         Sleep(5.5);
-        arm.SetDegree(28);
+        arm.SetDegree(30);
         
 
     }
@@ -389,16 +389,17 @@ void fuel(){
 
         //Move back 9
 
+        left_turn(1);
         move_backward(8);
         Sleep(1.0);
         arm.SetDegree(24);
         Sleep(1.0);
-        move_backward(1);
+        move_backward(1); //Changed from 1
         Sleep(1.0);
         arm.SetDegree(28);
         arm.SetDegree(8);
         Sleep(5.5);
-        arm.SetDegree(28);
+        arm.SetDegree(30);
     }
 
 
