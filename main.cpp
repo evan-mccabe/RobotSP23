@@ -4,6 +4,7 @@
 #include <FEHMotor.h>
 #include <FEHRPS.h>
 #include <FEHServo.h>
+#include <FEHBattery.h>
 #include <math.h>
 
 //Include movement functions
@@ -18,7 +19,7 @@ int main(void)
     LCD.Clear(BLACK);
     LCD.SetFontColor(WHITE);
 
-
+    RPS.InitializeTouchMenu();
 
     LCD.WriteLine("Touch the screen to start");
     while(!LCD.Touch(&x,&y)); //Wait for screen to be pressed
@@ -31,14 +32,37 @@ int main(void)
     arm.SetMin(550);
     arm.SetMax(2450);
 
+    /*
+    int degree = 13;
+
+    while(1){
+    
+        arm.SetDegree(degree);
+        LCD.WriteLine(degree);
+        while(!LCD.Touch(&x,&y)); //Wait for screen to be pressed
+        while(LCD.Touch(&x,&y)); //Wait for screen to be unpressed
+        degree++;
+    }
+
+    */
+
+
     while(cds.Value()>3){
     }
 
 
-    move_forward(15);
-    right_turn(225);
+    move_forward(17.5);
+    right_turn(135);
+    check_heading(90);
+    arm.SetDegree(45);
+    move_forward(.5);
 
-    //fuel();
+    //2.25
+    //6
+    //9.5
+
+    fuel();
+
 
 
     

@@ -349,38 +349,142 @@ void ticket(int c){
 
 void fuel(){
 
-    int lever = 0;
+    
 
     arm.SetDegree(45);
     
-    //RPS.GetCorrectLever();
+    int lever = RPS.GetCorrectLever();
 
     if (lever == 0){
-
-
-        arm.SetDegree(10);
-        move_backward(1);
-
-        arm.SetDegree(0);
+        //Move back 2
+        arm.SetDegree(24);
+        Sleep(1.0);
+        move_backward(2);
+        Sleep(1.0);
+        arm.SetDegree(28);
+        arm.SetDegree(8);
         Sleep(5.5);
-        arm.SetDegree(10);
+        arm.SetDegree(28);
         
 
     }
     else if(lever == 1){
 
-        move_backward(2);
 
-        //Add servo logic
+        //Move back 5.75
+
+        move_backward(4.5);
+        Sleep(1.0);
+        arm.SetDegree(26);
+        Sleep(1.0);
+        move_backward(1.25);
+        Sleep(1.0);
+        arm.SetDegree(5);
+        Sleep(5.5);
+        arm.SetDegree(5);
+        arm.SetDegree(32);
 
     }
     else if(lever == 2){
 
-        move_backward(3);
+        //Move back 9
 
-        //Add servo logic
-
+        move_backward(8);
+        Sleep(1.0);
+        arm.SetDegree(24);
+        Sleep(1.0);
+        move_backward(1);
+        Sleep(1.0);
+        arm.SetDegree(28);
+        arm.SetDegree(8);
+        Sleep(5.5);
+        arm.SetDegree(28);
     }
 
 
 }
+
+/*
+ * Pulse counterclockwise a short distance using time
+ */
+void pulse_counterclockwise(int percent, float seconds)
+{
+    // Set both motors to desired percent
+    right_motor.SetPercent(percent);
+    left_motor.SetPercent(-percent);
+
+    // Wait for the correct number of seconds
+    Sleep(seconds);
+
+    // Turn off motors
+    right_motor.Stop();
+    left_motor.Stop();
+
+}
+
+/*
+ * Use RPS to move to the desired heading
+ */
+void check_heading(float heading)
+{
+    // You will need to fill out this one yourself and take into account
+    // checking for proper RPS data and the edge conditions
+    //(when you want the robot to go to 0 degrees or close to 0 degrees)
+
+    /*
+        SUGGESTED ALGORITHM:
+        1. Check the current orientation of the QR code and the desired orientation of the QR code
+        2. Check if the robot is within the desired threshold for the heading based on the orientation
+        3. Pulse in the correct direction based on the orientation
+    */
+
+    // Determine the direction of the motors based on the orientation of the QR code
+
+    bool c = true;
+
+    // Check if receiving proper RPS coordinates and whether the robot is within an acceptable range
+    while (c && (RPS.Heading()>-1.5)&&(RPS.Heading() < (heading - 3) || (RPS.Heading() > (heading + 3))))
+    {
+        LCD.WriteLine(RPS.Heading());
+        float state1 = RPS.Heading();
+
+        if (RPS.Heading() > heading)
+        {
+            // Pulse the motors for a short duration in the correct direction
+            pulse_counterclockwise(-PULSE_POWER,PULSE_TIME);
+        }
+        else if (RPS.Heading() < heading)
+        {
+            // Pulse the motors for a short duration in the correct direction
+            pulse_counterclockwise(PULSE_POWER,PULSE_TIME);
+        }
+        Sleep(RPS_WAIT_TIME_IN_SEC);
+
+        float state2 = RPS.Heading();
+
+        if((state1>0) && (state2>0)){
+
+        if(abs(state1-state2)>100){
+
+            if(state1>200){
+                pulse_counterclockwise(-PULSE_POWER/2.0,PULSE_TIME);
+                c = false;
+            }
+            else if(state2>200){
+                pulse_counterclockwise(PULSE_POWER/2.0,PULSE_TIME);
+                c = false;
+            }
+
+        }
+        }
+
+        Sleep(RPS_WAIT_TIME_IN_SEC);
+
+        if(RPS.Heading()<0){
+            Sleep(RPS_WAIT_TIME_IN_SEC);
+        }
+
+        
+
+    }
+    }
