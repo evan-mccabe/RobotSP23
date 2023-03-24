@@ -405,6 +405,22 @@ void fuel(){
 
 }
 
+void passport(){
+
+    arm.SetDegree(179);
+    //move_backward(10);
+    Sleep(5.0);
+    arm.SetDegree(85);
+    arm.SetDegree(179);
+    Sleep(.5);
+    move_forward(10);
+
+
+
+}
+
+
+//RPS
 /*
  * Pulse counterclockwise a short distance using time
  */
@@ -421,6 +437,93 @@ void pulse_counterclockwise(int percent, float seconds)
     right_motor.Stop();
     left_motor.Stop();
 
+}
+
+/*
+ * Pulse forward a short distance using time
+ */
+void pulse_forward(int percent, float seconds)
+{
+    // Set both motors to desired percent
+    right_motor.SetPercent(percent);
+    left_motor.SetPercent(percent);
+
+    // Wait for the correct number of seconds
+    Sleep(seconds);
+
+    // Turn off motors
+    right_motor.Stop();
+    left_motor.Stop();
+}
+
+/*
+ * Use RPS to move to the desired x_coordinate based on the orientation of the QR code
+ */
+void check_x(float x_coordinate, int orientation)
+{
+    // Determine the direction of the motors based on the orientation of the QR code
+    int power = PULSE_POWER;
+    if (orientation == MINUS)
+    {
+        power = -PULSE_POWER;
+    }
+
+    // Check if receiving proper RPS coordinates and whether the robot is within an acceptable range
+    while ( (RPS.X()>-1.5) && (RPS.X() < x_coordinate - 1 || RPS.X() > x_coordinate + 1))
+    {
+        if (RPS.X() > x_coordinate)
+        {
+            // Pulse the motors for a short duration in the correct direction
+            pulse_forward(-power, PULSE_TIME);
+        }
+        else if (RPS.X() > x_coordinate)
+        {
+            // Pulse the motors for a short duration in the correct direction
+            pulse_forward(power, PULSE_TIME);
+        }
+        Sleep(RPS_WAIT_TIME_IN_SEC);
+
+        if(RPS.X()<0){
+            Sleep(RPS_WAIT_TIME_IN_SEC);
+        }
+
+        LCD.WriteLine(RPS.X());
+    }
+}
+
+/*
+ * Use RPS to move to the desired y_coordinate based on the orientation of the QR code
+ */
+void check_y(float y_coordinate, int orientation)
+{
+    // Determine the direction of the motors based on the orientation of the QR code
+    int power = PULSE_POWER;
+    if (orientation == MINUS)
+    {
+        power = -PULSE_POWER;
+    }
+
+    // Check if receiving proper RPS coordinates and whether the robot is within an acceptable range
+    while ( (RPS.Y()>-1.5) &&(RPS.Y() < y_coordinate - 1 || RPS.Y() > y_coordinate + 1))
+    {
+        if (RPS.Y() > y_coordinate)
+        {
+            // Pulse the motors for a short duration in the correct direction
+            pulse_forward(-power, PULSE_TIME);
+        }
+        else if (RPS.Y() < y_coordinate)
+        {
+            // Pulse the motors for a short duration in the correct direction
+            pulse_forward(power, PULSE_TIME);
+        }
+        Sleep(RPS_WAIT_TIME_IN_SEC);
+
+        if(RPS.Y()<0){
+            Sleep(RPS_WAIT_TIME_IN_SEC);
+        }
+
+        LCD.WriteLine(RPS.Y());
+    }
 }
 
 /*
@@ -490,16 +593,4 @@ void check_heading(float heading)
     }
     }
 
-void passport(){
 
-    arm.SetDegree(179);
-    //move_backward(10);
-    Sleep(5.0);
-    arm.SetDegree(85);
-    arm.SetDegree(179);
-    Sleep(.5);
-    move_forward(10);
-
-
-
-}
