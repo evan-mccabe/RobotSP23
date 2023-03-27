@@ -19,7 +19,7 @@ int main(void)
     LCD.Clear(BLACK);
     LCD.SetFontColor(WHITE);
 
-    //RPS.InitializeTouchMenu();
+    RPS.InitializeTouchMenu();
 
     LCD.WriteLine("Touch the screen to start");
     while(!LCD.Touch(&x,&y)); //Wait for screen to be pressed
@@ -29,14 +29,13 @@ int main(void)
     suitcase.SetMin(500);
     suitcase.SetMax(2500);
 
-    arm.SetMin(550);
+    arm.SetMin(500);
     arm.SetMax(2500);
 
-    arm.SetDegree(179);
-    /*
+
     while(cds.Value()>3){
     }
-    
+
     //Passport checkpoint
     right_turn(45);
     move_forward(4);
@@ -48,26 +47,21 @@ int main(void)
     left_turn(45);
     move_forward(13);
     right_turn(45);
-    moveUntil();
-    move_backward(2);
+    check_heading(180);
+    move_forward(4.5);
     left_turn(90);
-    arm.SetDegree(179);
+    arm.SetDegree(175);
     check_heading(270);
-    move_backward(5.5);
-    arm.SetDegree(90);
+    move_backward(5);
     Sleep(1.0);
-    arm.SetDegree(179);
+    arm.SetDegree(110);
+    Sleep(2.0);
+    arm.SetDegree(175);
     move_forward(5);
 
-    */
-
-    
 
 
-
-
-
-    /* Fuel lever code
+    /* FUEL LEVER CODE
     move_forward(17.5);
     right_turn(135);
     check_heading(90);
