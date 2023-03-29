@@ -357,14 +357,14 @@ void fuel(){
 
     if (lever == 0){
         //Move back 2
-        arm.SetDegree(24); //24
+        arm.SetDegree(20);
         Sleep(1.0);
         move_backward(2);
         Sleep(1.0);
-        arm.SetDegree(28); //28
-        arm.SetDegree(1); //8
+        arm.SetDegree(20); 
+        arm.SetDegree(1); 
         Sleep(5.5);
-        arm.SetDegree(30); //30
+        arm.SetDegree(25); 
         
 
     }
@@ -375,14 +375,14 @@ void fuel(){
 
         move_backward(4.5);
         Sleep(1.0);
-        arm.SetDegree(26); //26
+        arm.SetDegree(20);
         Sleep(1.0);
         move_backward(1.25);
         Sleep(1.0);
-        arm.SetDegree(1); //5
+        arm.SetDegree(1);
         Sleep(5.5);
-        arm.SetDegree(1); //5
-        arm.SetDegree(32); //32
+        arm.SetDegree(1);
+        arm.SetDegree(25); 
 
     }
     else if(lever == 2){
@@ -392,14 +392,14 @@ void fuel(){
         left_turn(1);
         move_backward(8);
         Sleep(1.0);
-        arm.SetDegree(24); //24
+        arm.SetDegree(20); 
         Sleep(1.0);
         move_backward(1);
         Sleep(1.0);
-        arm.SetDegree(28); //28
-        arm.SetDegree(1); //8
+        arm.SetDegree(20); 
+        arm.SetDegree(1); 
         Sleep(5.5);
-        arm.SetDegree(30); //30
+        arm.SetDegree(25); 
     }
 
 
@@ -475,7 +475,7 @@ void check_x(float x_coordinate, int orientation)
             // Pulse the motors for a short duration in the correct direction
             pulse_forward(-power, PULSE_TIME);
         }
-        else if (RPS.X() > x_coordinate)
+        else if (RPS.X() < x_coordinate)
         {
             // Pulse the motors for a short duration in the correct direction
             pulse_forward(power, PULSE_TIME);

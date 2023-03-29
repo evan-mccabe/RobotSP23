@@ -32,7 +32,21 @@ int main(void)
     arm.SetMin(500);
     arm.SetMax(2500);
 
+    /*
+    while (true){
+    LCD.Clear();
+    LCD.WriteLine("X:");
+    LCD.WriteLine(RPS.X());
+    LCD.WriteLine("Y:");
+    LCD.WriteLine(RPS.Y());
 
+    Sleep(1.0);
+
+
+    }
+    */
+
+   /*
     while(cds.Value()>3){
     }
 
@@ -49,19 +63,21 @@ int main(void)
     right_turn(45);
     check_heading(180);
     move_forward(4.5);
+    check_y(61,PLUS);
     left_turn(90);
     arm.SetDegree(175);
     check_heading(270);
     move_backward(5);
+    check_x(24,MINUS);
     Sleep(1.0);
-    arm.SetDegree(110);
-    Sleep(2.0);
+    arm.SetDegree(60);
+    Sleep(1.0);
     arm.SetDegree(175);
     move_forward(5);
 
+    */
 
 
-    /* FUEL LEVER CODE
     move_forward(17.5);
     right_turn(135);
     check_heading(90);
@@ -73,7 +89,6 @@ int main(void)
     //9.5
 
     fuel();
-    */
 
 
 
