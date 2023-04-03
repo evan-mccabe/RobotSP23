@@ -593,3 +593,28 @@ void check_heading(float heading)
     }
 
 
+int moveUntilOne(){
+
+    //Reset encoder counts
+    right_encoder.ResetCounts();
+    left_encoder.ResetCounts();
+
+    //move until both microswitches are pressed
+    while ((lfmicro.Value() && rfmicro.Value())){
+
+        right_motor.SetPercent(rmp);
+        left_motor.SetPercent(lmp);
+
+
+    }
+
+    Sleep(1);
+
+    //turn motors off
+    right_motor.SetPercent(0);
+    left_motor.SetPercent(0);
+
+
+    return ((abs(left_encoder.Counts()+right_encoder.Counts()))/2.0)/inchesCount;
+    
+}
