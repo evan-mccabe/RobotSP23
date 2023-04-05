@@ -1,0 +1,39 @@
+    /* Suitcase checkpoint
+    right_turn(45);
+    move_forward(4);
+    right_turn(10);
+    move_forward(4);
+    left_turn(12);
+    check_heading(180,1);
+    ramp(28);
+    check_heading(180,1);
+    check_y(49.5,PLUS);
+    left_turn(90);
+    check_heading(270,1);
+    move_forward(15);
+    check_x(13,MINUS);
+    left_turn(88);
+    check_y(42,MINUS);
+    moveUntilOne();
+
+    Sleep(2.0);
+    suitcase.SetDegree(50);
+    Sleep(2.0);
+    suitcase.SetDegree(180);
+
+    move_backward(4);
+    right_turn(90);
+    check_heading(270,1);
+    moveUntil();
+    move_backward(.5);
+    right_turn(90);
+    check_heading(180,1);
+    move_backward(25);
+    right_turn(90);
+    check_heading(90,1);
+    move_forward(10);
+    right_turn(45);
+    check_heading(45,1);
+    move_forward(20);
+
+    */

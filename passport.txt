@@ -1,0 +1,27 @@
+
+    /*
+    //Passport checkpoint
+    right_turn(45);
+    move_forward(4);
+    right_turn(10);
+    move_forward(4);
+    left_turn(12);
+    ramp(26);
+    check_heading(180);
+    left_turn(45);
+    move_forward(13);
+    right_turn(45);
+    check_heading(180);
+    move_forward(4.5);
+    check_y(61,PLUS);
+    left_turn(90);
+    arm.SetDegree(175);
+    check_heading(270);
+    move_backward(5);
+    check_x(24,MINUS);
+    Sleep(1.0);
+    arm.SetDegree(60);
+    Sleep(1.0);
+    arm.SetDegree(175);
+    move_forward(5);
+    */

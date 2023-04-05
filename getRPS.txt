@@ -1,0 +1,15 @@
+
+    /*
+    while (true){
+    LCD.Clear();
+    LCD.WriteLine("X:");
+    LCD.WriteLine(RPS.X());
+    LCD.WriteLine("Y:");
+    LCD.WriteLine(RPS.Y());
+
+    Sleep(1.0);
+
+
+    }
+
+    */
