@@ -21,140 +21,63 @@ int main(void)
 
     RPS.InitializeTouchMenu();
 
+    //Set min and max for each servo
+    suitcase.SetMin(500);
+    suitcase.SetMax(2500);
+    arm.SetMin(500);
+    arm.SetMax(2500);
+
     LCD.WriteLine("Touch the screen to start");
     while(!LCD.Touch(&x,&y)); //Wait for screen to be pressed
     while(LCD.Touch(&x,&y)); //Wait for screen to be unpressed
 
-    //Set min and max for each servo
-    suitcase.SetMin(500);
-    suitcase.SetMax(2500);
 
-    arm.SetMin(500);
-    arm.SetMax(2500);
-
-    //Sleep(5.0);
-
-    //suitcase.SetDegree(50);
-
-    /*
-    while (true){
+    //Wait for start light
     LCD.Clear();
-    LCD.WriteLine("X:");
-    LCD.WriteLine(RPS.X());
-    LCD.WriteLine("Y:");
-    LCD.WriteLine(RPS.Y());
-
-    Sleep(1.0);
-
-
-    }
-
-    */
-
+    LCD.WriteLine("Waiting for start light");
     while(cds.Value()>3){
     }
 
-    right_turn(45);
-    move_forward(4);
-    right_turn(10);
-    move_forward(4);
-    left_turn(12);
-    check_heading(180);
-    ramp(26);
-    check_heading(180);
-    check_y(49.5,PLUS);
-    left_turn(90);
-    check_heading(270);
-    move_forward(15);
-    check_x(12,MINUS);
-    left_turn(90);
-    check_heading(0);
-    check_y(42,MINUS);
-    moveUntilOne();
-
-    Sleep(2.0);
-    suitcase.SetDegree(50);
-    suitcase.SetDegree(90);
-
-    move_backward(4);
-    right_turn(90);
-    check_heading(270);
-    move_forward(3);
-    right_turn(90);
-    check_heading(180);
-    move_backward(10);
-    right_turn(90);
-    check_heading(90);
-    move_forward(10);
-    right_turn(45);
-    check_heading(45);
-    move_forward(15);
+    LCD.Clear();
+    LCD.WriteLine("Started run");
 
 
-
-
-    /*
-    //Passport checkpoint
-    right_turn(45);
-    move_forward(4);
-    right_turn(10);
-    move_forward(4);
-    left_turn(12);
-    ramp(26);
-    check_heading(180);
-    left_turn(45);
-    move_forward(13);
-    right_turn(45);
-    check_heading(180);
-    move_forward(4.5);
-    check_y(61,PLUS);
-    left_turn(90);
-    arm.SetDegree(175);
-    check_heading(270);
-    move_backward(5);
-    check_x(24,MINUS);
-    Sleep(1.0);
-    arm.SetDegree(60);
-    Sleep(1.0);
-    arm.SetDegree(175);
-    move_forward(5);
-    */
-
-
-
-   /*Fuel checkpoint
     move_forward(17.5);
     right_turn(135);
-    check_heading(90);
+    check_heading(90,1);
     arm.SetDegree(45);
     move_forward(.5);
 
-
-
-    //2.25
-    //6
-    //9.5
-
     fuel();
-
-    */
-
-
-
-
     
-    /*
-    //Navigate up the ramp and to the boarding pass kiosk
-    
+    //Reset arm
+    arm.SetDegree(120);
+    moveUntil();
+    move_backward(.5);
+    left_turn(90);
+    check_heading(180,1);
+    ramp(26);
 
-    right_turn(45);
-    move_forward(4);
-    right_turn(10);
-    move_forward(4);
-    left_turn(12);
-    ramp(24);
-
+    check_heading(180,1);
+    check_y(49.5,PLUS);
+    left_turn(90);
+    check_heading(270,1);
+    move_forward(15);
+    check_x(13,MINUS);
+    left_turn(88);
+    check_y(42,MINUS);
+    moveUntilOne();
+    Sleep(1.0);
+    suitcase.SetDegree(50);
+    Sleep(1.0);
+    suitcase.SetDegree(180);
+    Sleep(1.0);
+    move_backward(5);
+    left_turn(160);
+    check_heading(160,1);
+    move_forward(2);
     lineFollow();
+
     right_motor.SetPercent(0);
     left_motor.SetPercent(0);
     left_turn(15);
@@ -166,27 +89,32 @@ int main(void)
     //Square off against tower
     moveUntil();
     
-
     //Press correct ticket button
     ticket(color);
 
-    move_backward(16);
-    right_turn(90);
+    //Passport task
 
-    moveUntil();
-    move_backward(.5);
-    right_turn(90);
+    //move_backward(??)
+    check_y(61,PLUS);
+    left_turn(90);
+    arm.SetDegree(175);
+    check_heading(270,1);
 
-    move_forward(28);
+    if(color==Blue){
+        //change these
+        move_backward(5);
+    }else{
+        //change these
+        move_backward(1);
+    }
+    check_x(24,MINUS);
+    Sleep(1.0);
+    arm.SetDegree(60);
+    Sleep(1.0);
+    arm.SetDegree(175);
+    move_forward(5);
 
-    lmp=100;
-    rmp=100;
-    right_turn(360);
-
-    rmp=25;
-    lmp=25;
-
-    */
+    //Go to the final button
 
     Sleep(2.0); //Wait for counts to stabilize
 

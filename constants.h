@@ -10,7 +10,7 @@ float degreesCount = 2.959238472;
 int lmp = 25;
 
 //Right motor percent
-int rmp = 25;
+int rmp = 24;
 
 //Colors for cds cell selection
 
@@ -45,7 +45,7 @@ b
 /* Defines for how long each pulse should be and at what motor power. 
 These value will normally be small, but you should play around with the values to find what works best */
 #define PULSE_TIME .1
-#define PULSE_POWER 20
+#define PULSE_POWER 10
 
 // Define for the motor power while driving (not pulsing)
 #define POWER 25
