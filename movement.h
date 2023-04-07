@@ -356,6 +356,7 @@ void fuel(){
     int lever = RPS.GetCorrectLever();
 
     if (lever == 0){
+        left_turn(1);
         arm.SetDegree(20);
         Sleep(1.0);
         move_backward(2.5);
@@ -364,7 +365,9 @@ void fuel(){
         arm.SetDegree(1); 
         Sleep(5.5);
         arm.SetDegree(25);
+        Sleep(.5);
         move_forward(2);
+        arm.SetDegree(120);
         
 
     }
@@ -381,7 +384,9 @@ void fuel(){
         Sleep(5.5);
         arm.SetDegree(1);
         arm.SetDegree(25); 
+        Sleep(.5);
         move_forward(2);
+        arm.SetDegree(120);
 
     }
     else if(lever == 2){
@@ -399,6 +404,8 @@ void fuel(){
         arm.SetDegree(25);
         Sleep(.5);
         move_forward(2);
+        arm.SetDegree(120);
+        move_forward(4);
     }
 
 
@@ -553,12 +560,12 @@ void check_heading(float heading, float tolerance)
         if (RPS.Heading() > heading)
         {
             // Pulse the motors for a short duration in the correct direction
-            pulse_counterclockwise(-PULSE_POWER,PULSE_TIME);
+            pulse_counterclockwise(-1.5*PULSE_POWER,PULSE_TIME);
         }
         else if (RPS.Heading() < heading)
         {
             // Pulse the motors for a short duration in the correct direction
-            pulse_counterclockwise(PULSE_POWER,PULSE_TIME);
+            pulse_counterclockwise(1.5*PULSE_POWER,PULSE_TIME);
         }
         Sleep(RPS_WAIT_TIME_IN_SEC);
 

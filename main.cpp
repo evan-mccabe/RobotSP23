@@ -50,13 +50,16 @@ int main(void)
 
     fuel();
     
-    //Reset arm
-    arm.SetDegree(120);
+    //Square off against right wall
+    move_forward(10);
+    right_turn(15);
+    move_forward(2);
+    left_turn(15);
     moveUntil();
     move_backward(.5);
     left_turn(90);
     check_heading(180,1);
-    ramp(26);
+    ramp(27);
 
     check_heading(180,1);
     check_y(49.5,PLUS);
@@ -74,8 +77,7 @@ int main(void)
     Sleep(1.0);
     move_backward(5);
     left_turn(160);
-    check_heading(160,1);
-    move_forward(2);
+    check_heading(165,1);
     lineFollow();
 
     right_motor.SetPercent(0);
@@ -94,7 +96,8 @@ int main(void)
 
     //Passport task
 
-    //move_backward(??)
+    //Change
+    move_backward(3);
     check_y(61,PLUS);
     left_turn(90);
     arm.SetDegree(175);
@@ -102,7 +105,7 @@ int main(void)
 
     if(color==Blue){
         //change these
-        move_backward(5);
+        move_backward(4);
     }else{
         //change these
         move_backward(1);
@@ -116,6 +119,20 @@ int main(void)
 
     //Go to the final button
 
+    right_turn(90);
+    check_heading(180,1);
+    move_backward(12);
+    right_turn(90);
+    moveUntil();
+
+    move_backward(.5);
+    right_turn(90);
+    move_forward(20);
+    right_turn(45);
+    move_forward(9);
+    left_turn(90);
+    move_forward(20);
+    
     Sleep(2.0); //Wait for counts to stabilize
 
     return 0;
