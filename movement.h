@@ -127,7 +127,8 @@ int moveUntil(){
 
     }
 
-    Sleep(1);
+    //Changed from 1
+    //Sleep(.5);
 
     //turn motors off
     right_motor.SetPercent(0);
@@ -250,7 +251,7 @@ while (cont) {
 
     Sleep(3);
 
-    if((TimeNow()-startTime)>=2){
+    if((TimeNow()-startTime)>=.5){
     if ((lopt.Value()>=2.7)&&(mopt.Value()>=2.7)&&(ropt.Value()>=2.7)){
 
         cont = false;
@@ -311,7 +312,7 @@ void ticket(int c){
         float t = TimeNow();
 
         //Move forward for 3 seconds to press button
-        while((TimeNow()-t)<3){
+        while((TimeNow()-t)<2){
             left_motor.SetPercent(25);
             right_motor.SetPercent(25);
         }
@@ -325,13 +326,13 @@ void ticket(int c){
     if (c == Red){
 
         LCD.WriteLine("Red");
-        move_backward(17);
+        move_backward(18);
         right_turn(45);
 
         float t = TimeNow();
 
-        //Move forward for 5 seconds to press button
-        while((TimeNow()-t)<5){
+        //Move forward for 4 seconds to press button
+        while((TimeNow()-t)<4){
             left_motor.SetPercent(25);
             right_motor.SetPercent(25);
         }
@@ -356,11 +357,12 @@ void fuel(){
     int lever = RPS.GetCorrectLever();
 
     if (lever == 0){
+
         left_turn(1);
         arm.SetDegree(20);
-        Sleep(1.0);
+        Sleep(.5);
         move_backward(2.5);
-        Sleep(1.0);
+        Sleep(.5);
         arm.SetDegree(20); 
         arm.SetDegree(1); 
         Sleep(5.5);
@@ -368,18 +370,21 @@ void fuel(){
         Sleep(.5);
         move_forward(2);
         arm.SetDegree(120);
+
+        //Go back to initial position
+        move_forward(.5);
         
 
     }
     else if(lever == 1){
 
-
+        left_turn(1);
         move_backward(4.5);
-        Sleep(1.0);
+        Sleep(.5);
         arm.SetDegree(20);
-        Sleep(1.0);
+        Sleep(.5);
         move_backward(2);
-        Sleep(1.0);
+        Sleep(.5);
         arm.SetDegree(1);
         Sleep(5.5);
         arm.SetDegree(1);
@@ -388,16 +393,19 @@ void fuel(){
         move_forward(2);
         arm.SetDegree(120);
 
+        //Go back to initial position
+        move_forward(4.5);
+
     }
     else if(lever == 2){
 
         left_turn(1);
         move_backward(8);
-        Sleep(1.0);
+        Sleep(.5);
         arm.SetDegree(20); 
-        Sleep(1.0);
+        Sleep(.5);
         move_backward(2.25);
-        Sleep(1.0);
+        Sleep(.5);
         arm.SetDegree(20); 
         arm.SetDegree(1); 
         Sleep(5.5);
@@ -405,7 +413,9 @@ void fuel(){
         Sleep(.5);
         move_forward(2);
         arm.SetDegree(120);
-        move_forward(4);
+
+        //Go back to initial position
+        move_forward(8.25);
     }
 
 
@@ -414,12 +424,10 @@ void fuel(){
 void passport(){
 
     arm.SetDegree(179);
-    //move_backward(10);
-    Sleep(5.0);
-    arm.SetDegree(85);
-    arm.SetDegree(179);
-    Sleep(.5);
-    move_forward(10);
+    Sleep(1.0);
+    arm.SetDegree(60);
+    Sleep(1.0);
+    arm.SetDegree(175);
 
 
 
@@ -614,7 +622,7 @@ int moveUntilOne(){
 
     }
 
-    Sleep(1);
+    //Sleep(.5);
 
     //turn motors off
     right_motor.SetPercent(0);

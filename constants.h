@@ -10,7 +10,7 @@ float degreesCount = 2.959238472;
 int lmp = 25;
 
 //Right motor percent
-int rmp = 24;
+int rmp = 25;
 
 //Colors for cds cell selection
 
