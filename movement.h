@@ -112,7 +112,7 @@ void right_turn(int degrees){
 
 }
 
-int moveUntil(){
+void moveUntil(){
 
     //Reset encoder counts
     right_encoder.ResetCounts();
@@ -127,15 +127,9 @@ int moveUntil(){
 
     }
 
-    //Changed from 1
-    //Sleep(.5);
-
     //turn motors off
     right_motor.SetPercent(0);
     left_motor.SetPercent(0);
-
-
-    return ((abs(left_encoder.Counts()+right_encoder.Counts()))/2.0)/inchesCount;
     
 }
 
