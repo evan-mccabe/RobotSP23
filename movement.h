@@ -133,6 +133,29 @@ void moveUntil(){
     
 }
 
+void moveUntilOne(){
+
+    //Reset encoder counts
+    right_encoder.ResetCounts();
+    left_encoder.ResetCounts();
+
+    //move until both microswitches are pressed
+    while ((lfmicro.Value() && rfmicro.Value())){
+
+        right_motor.SetPercent(rmp);
+        left_motor.SetPercent(lmp);
+
+
+    }
+
+    //Sleep(.5);
+
+    //turn motors off
+    right_motor.SetPercent(0);
+    left_motor.SetPercent(0);
+    
+}
+
 void lineFollow(){
 
 
@@ -305,10 +328,10 @@ void ticket(int c){
         right_turn(45);
         float t = TimeNow();
 
-        //Move forward for 3 seconds to press button
+        //Move forward for 2 seconds to press button
         while((TimeNow()-t)<2){
-            left_motor.SetPercent(25);
-            right_motor.SetPercent(25);
+            left_motor.SetPercent(lmp);
+            right_motor.SetPercent(rmp);
         }
         left_motor.SetPercent(0);
         right_motor.SetPercent(0);
@@ -325,10 +348,10 @@ void ticket(int c){
 
         float t = TimeNow();
 
-        //Move forward for 4 seconds to press button
-        while((TimeNow()-t)<4){
-            left_motor.SetPercent(25);
-            right_motor.SetPercent(25);
+        //Move forward for 3 seconds to press button
+        while((TimeNow()-t)<3){
+            left_motor.SetPercent(lmp);
+            right_motor.SetPercent(rmp);
         }
         
         left_motor.SetPercent(0);
@@ -358,8 +381,12 @@ void fuel(){
         move_backward(2.5);
         Sleep(.5);
         arm.SetDegree(20); 
+
+        //Flip lever down and wait 
         arm.SetDegree(1); 
         Sleep(5.5);
+
+        //Flip lever back down
         arm.SetDegree(25);
         Sleep(.5);
         move_forward(2);
@@ -599,30 +626,3 @@ void check_heading(float heading, float tolerance)
 
     }
     }
-
-
-int moveUntilOne(){
-
-    //Reset encoder counts
-    right_encoder.ResetCounts();
-    left_encoder.ResetCounts();
-
-    //move until both microswitches are pressed
-    while ((lfmicro.Value() && rfmicro.Value())){
-
-        right_motor.SetPercent(rmp);
-        left_motor.SetPercent(lmp);
-
-
-    }
-
-    //Sleep(.5);
-
-    //turn motors off
-    right_motor.SetPercent(0);
-    left_motor.SetPercent(0);
-
-
-    return ((abs(left_encoder.Counts()+right_encoder.Counts()))/2.0)/inchesCount;
-    
-}
