@@ -114,10 +114,6 @@ void right_turn(int degrees){
 
 void moveUntil(){
 
-    //Reset encoder counts
-    right_encoder.ResetCounts();
-    left_encoder.ResetCounts();
-
     //move until both microswitches are pressed
     while ((lfmicro.Value()||rfmicro.Value())){
 
@@ -135,10 +131,6 @@ void moveUntil(){
 
 void moveUntilOne(){
 
-    //Reset encoder counts
-    right_encoder.ResetCounts();
-    left_encoder.ResetCounts();
-
     //move until both microswitches are pressed
     while ((lfmicro.Value() && rfmicro.Value())){
 
@@ -147,8 +139,6 @@ void moveUntilOne(){
 
 
     }
-
-    //Sleep(.5);
 
     //turn motors off
     right_motor.SetPercent(0);
