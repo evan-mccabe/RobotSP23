@@ -55,13 +55,6 @@ int main(void)
     //Square off against right wall
     check_heading(90,1);
 
-    /*
-    move_forward(8);
-    right_turn(15);
-    move_forward(2);
-    left_turn(15);
-    */
-
     moveUntil();
     move_backward(.5);
     left_turn(85);
@@ -80,7 +73,6 @@ int main(void)
 
     //Square off against suitcase bin
     moveUntilOne();
-    //Sleep(.5);
     
     //Drop suitcase
     suitcase.SetDegree(50);
@@ -116,10 +108,10 @@ int main(void)
     check_heading(270,1);
 
     if(color==Blue){
-        //change these
+
         move_backward(6);
     }else{
-        //change these
+    
         move_backward(2);
     }
     check_x(24,MINUS);
