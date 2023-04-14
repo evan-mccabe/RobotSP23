@@ -69,7 +69,6 @@ int main(void)
     move_forward(15);
     check_x(13,MINUS);
     left_turn(88);
-    //check_y(42,MINUS);
 
     //Square off against suitcase bin
     moveUntilOne();
