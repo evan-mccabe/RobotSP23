@@ -131,8 +131,8 @@ void moveUntil(){
         right_motor.SetPercent(rmp);
         left_motor.SetPercent(lmp);
 
-        //Timeout after 4 seconds
-        if(TimeNow()-startTime>4){
+        //Timeout after 5 seconds
+        if(TimeNow()-startTime>5){
             keep = false;
         }
 
@@ -157,8 +157,8 @@ void moveUntilOne(){
         right_motor.SetPercent(rmp);
         left_motor.SetPercent(lmp);
 
-        //Timeout after 4 seconds
-        if(TimeNow()-startTime>4){
+        //Timeout after 5 seconds
+        if(TimeNow()-startTime>5){
             keep = false;
         }
 
