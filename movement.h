@@ -4,6 +4,7 @@
 
 void move_forward(float inches)
 {
+    //Calculate number of motor counts for the distance that needs to be travelled
     int counts = inches*inchesCount;
     
     //Reset encoder counts
@@ -25,6 +26,7 @@ void move_forward(float inches)
 
 void move_backward(float inches)
 {
+    //Calculate number of motor counts for the distance that needs to be travelled
     int counts = inches*inchesCount;
     
     //Reset encoder counts
@@ -45,7 +47,8 @@ void move_backward(float inches)
 }
 
 void ramp(float inches)
-{
+{   
+    //Calculate number of motor counts for the distance that needs to be travelled
     int counts = inches*inchesCount;
     
     //Reset encoder counts
@@ -68,7 +71,8 @@ void ramp(float inches)
 
 void left_turn(float degrees){
 
-    int counts = degrees*3.2;
+    //Find necessary counts to rotate x degrees
+    int counts = degrees*degreesCount;
 
     //Reset encoder counts
     right_encoder.ResetCounts();
@@ -91,7 +95,8 @@ void left_turn(float degrees){
 
 void right_turn(int degrees){
 
-    int counts = degrees*3.2;
+    //Find necessary counts to rotate x degrees
+    int counts = degrees*degreesCount;
 
     //Reset encoder counts
     right_encoder.ResetCounts();
@@ -114,11 +119,22 @@ void right_turn(int degrees){
 
 void moveUntil(){
 
-    //move until both microswitches are pressed
-    while ((lfmicro.Value()||rfmicro.Value())){
+    float startTime = TimeNow();
+
+    bool keep = true;
+
+    //move until both microswitches are pressed and time hasnt reached 5 seconds
+    while ((lfmicro.Value()||rfmicro.Value())&&(keep)){
+
+        
 
         right_motor.SetPercent(rmp);
         left_motor.SetPercent(lmp);
+
+        //Timeout after 8 seconds
+        if(TimeNow()-startTime>8){
+            keep = false;
+        }
 
 
     }
@@ -131,11 +147,20 @@ void moveUntil(){
 
 void moveUntilOne(){
 
+    float startTime = TimeNow();
+
+    bool keep = true;
+
     //move until both microswitches are pressed
-    while ((lfmicro.Value() && rfmicro.Value())){
+    while ((lfmicro.Value() && rfmicro.Value())&&keep){
 
         right_motor.SetPercent(rmp);
         left_motor.SetPercent(lmp);
+
+        //Timeout after 8 seconds
+        if(TimeNow()-startTime>8){
+            keep = false;
+        }
 
 
     }
@@ -258,6 +283,7 @@ while (cont) {
 
     Sleep(3);
 
+    //Wait .5 seconds until checking to see if the robot is off of the line, exit the loop if so
     if((TimeNow()-startTime)>=.5){
     if ((lopt.Value()>=2.7)&&(mopt.Value()>=2.7)&&(ropt.Value()>=2.7)){
 
@@ -284,11 +310,14 @@ int detect(){
     Sleep(2.0);
 
     LCD.WriteLine(cds.Value());
+
+    //If the light is red
     if ((cds.Value())<1.1){
         color = Red;
         LCD.Clear();
         LCD.SetBackgroundColor(RED);
-        
+
+        //If the light is blue
     }else{
         color = Blue;
         LCD.Clear();
@@ -360,9 +389,11 @@ void fuel(){
     
 
     arm.SetDegree(45);
-    
+
+    //Get the correct lever from rps
     int lever = RPS.GetCorrectLever();
 
+    //If Jet A
     if (lever == 0){
 
         left_turn(1);
@@ -386,7 +417,7 @@ void fuel(){
         move_forward(.5);
         
 
-    }
+    }//If Jet A1
     else if(lever == 1){
 
         left_turn(1);
@@ -407,8 +438,8 @@ void fuel(){
         //Go back to initial position
         move_forward(4.5);
 
-    }
-    else if(lever == 2){
+    }//If Jet B
+    else {
 
         left_turn(1);
         move_backward(8);
@@ -434,6 +465,7 @@ void fuel(){
 
 void passport(){
 
+    //Manipulate passport lever
     arm.SetDegree(179);
     Sleep(1.0);
     arm.SetDegree(60);
@@ -555,18 +587,6 @@ void check_y(float y_coordinate, int orientation)
  */
 void check_heading(float heading, float tolerance)
 {
-    // You will need to fill out this one yourself and take into account
-    // checking for proper RPS data and the edge conditions
-    //(when you want the robot to go to 0 degrees or close to 0 degrees)
-
-    /*
-        SUGGESTED ALGORITHM:
-        1. Check the current orientation of the QR code and the desired orientation of the QR code
-        2. Check if the robot is within the desired threshold for the heading based on the orientation
-        3. Pulse in the correct direction based on the orientation
-    */
-
-    // Determine the direction of the motors based on the orientation of the QR code
 
     bool c = true;
 

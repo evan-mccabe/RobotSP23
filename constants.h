@@ -4,7 +4,7 @@
 float inchesCount = 40.49; 
 
 //# of counts for 1 degree of turn
-float degreesCount = 2.959238472;
+float degreesCount = 3.2;
 
 //Left motor percent
 int lmp = 25;
