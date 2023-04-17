@@ -362,7 +362,7 @@ void ticket(int c){
     if (c == Red){
 
         LCD.WriteLine("Red");
-        move_backward(18);
+        move_backward(17.5);
         right_turn(45);
 
         float t = TimeNow();
@@ -403,12 +403,16 @@ void fuel(){
         Sleep(.5);
         arm.SetDegree(20); 
 
-        //Flip lever down and wait 
+        //Flip lever down 
         arm.SetDegree(1); 
-        Sleep(5.5);
-
-        //Flip lever back down
+        Sleep(.5);
+        //Flip lever back up
         arm.SetDegree(25);
+        Sleep(.5);
+        //Flip lever back down
+        arm.SetDegree(1);
+
+
         Sleep(.5);
         move_forward(2);
         arm.SetDegree(120);
@@ -427,10 +431,18 @@ void fuel(){
         Sleep(.5);
         move_backward(2);
         Sleep(.5);
+
+
+        //Flip lever down 
+        arm.SetDegree(1); 
+        Sleep(.5);
+        //Flip lever back up
+        arm.SetDegree(25);
+        Sleep(.5);
+        //Flip lever back down
         arm.SetDegree(1);
-        Sleep(5.5);
-        arm.SetDegree(1);
-        arm.SetDegree(25); 
+
+
         Sleep(.5);
         move_forward(2);
         arm.SetDegree(120);
@@ -449,9 +461,18 @@ void fuel(){
         move_backward(2.25);
         Sleep(.5);
         arm.SetDegree(20); 
+
+
+        //Flip lever down 
         arm.SetDegree(1); 
-        Sleep(5.5);
+        Sleep(.5);
+        //Flip lever back up
         arm.SetDegree(25);
+        Sleep(.5);
+        //Flip lever back down
+        arm.SetDegree(1);
+
+
         Sleep(.5);
         move_forward(2);
         arm.SetDegree(120);
@@ -467,9 +488,9 @@ void passport(){
 
     //Manipulate passport lever
     arm.SetDegree(179);
-    Sleep(1.0);
+    Sleep(.2);
     arm.SetDegree(60);
-    Sleep(1.0);
+    Sleep(.5);
     arm.SetDegree(175);
 
 
@@ -629,7 +650,7 @@ void check_heading(float heading, float tolerance)
         Sleep(RPS_WAIT_TIME_IN_SEC);
 
         if(RPS.Heading()<0){
-            Sleep(RPS_WAIT_TIME_IN_SEC);
+            Sleep(.35);
         }
 
         

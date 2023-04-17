@@ -11,7 +11,7 @@
 #include <movement.h>
 
 /*
-FINAL CODE BACKUP
+TESTING CODE
 */
 
 int main(void)
@@ -56,17 +56,22 @@ int main(void)
     fuel();
     
     //Square off against right wall
-    check_heading(90,1);
+    check_heading(90,3);
 
+    lmp*=2;
+    rmp*=2;
     moveUntil();
+    lmp/=2;
+    rmp/=2;
+
     move_backward(.5);
     left_turn(85);
     check_heading(180,1);
-    ramp(27);
+    ramp(26);
 
     //Navigate up the ramp and complete suitcase task
     check_heading(180,1);
-    check_y(49.5,PLUS);
+    //check_y(49.5,PLUS);
     left_turn(85);
     check_heading(270,1);
     move_forward(15);
@@ -82,13 +87,11 @@ int main(void)
     suitcase.SetDegree(180);
     move_backward(5);
     left_turn(165);
-    check_heading(168,1);
+    check_heading(170,1);
 
     //Follow line to complete fuel lever task
     lineFollow();
 
-    right_motor.SetPercent(0);
-    left_motor.SetPercent(0);
     left_turn(15);
     move_forward(2);
 
@@ -96,6 +99,7 @@ int main(void)
     left_turn(15);
 
     //Square off against tower
+
     moveUntil();
     
     //Press correct ticket button
@@ -128,12 +132,23 @@ int main(void)
     check_heading(180,1);
     move_backward(12);
     right_turn(90);
+
+    lmp*=2;
+    rmp*=2;
     moveUntil();
+    lmp/=2;
+    rmp/=2;
+
 
     move_backward(.5);
-    right_turn(90);
+    right_turn(85);
+
+    //Speed up
+    rmp*=2;
+    lmp*=2;
+
     move_forward(20);
-    right_turn(45);
+    right_turn(40);
     move_forward(12);
     left_turn(80);
     move_forward(20);

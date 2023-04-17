@@ -36,7 +36,7 @@ b
 #define NUM_POINTS_OF_INTEREST 4
 
 // RPS Delay time
-#define RPS_WAIT_TIME_IN_SEC 0.35
+#define RPS_WAIT_TIME_IN_SEC 0.15
 
 // Shaft encoding counts for CrayolaBots
 #define COUNTS_PER_INCH 40.5
