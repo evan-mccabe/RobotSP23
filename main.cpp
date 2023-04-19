@@ -58,11 +58,7 @@ int main(void)
     //Square off against right wall
     check_heading(90,3);
 
-    lmp*=2;
-    rmp*=2;
-    moveUntil();
-    lmp/=2;
-    rmp/=2;
+    moveUntil(7);
 
     move_backward(.5);
     left_turn(85);
@@ -72,7 +68,7 @@ int main(void)
     //Navigate up the ramp and complete suitcase task
     check_heading(180,1);
     //check_y(49.5,PLUS);
-    left_turn(85);
+    left_turn(87);
     check_heading(270,1);
     move_forward(15);
     check_x(13,MINUS);
@@ -84,26 +80,30 @@ int main(void)
     //Drop suitcase
     suitcase.SetDegree(50);
     Sleep(.5);
-    suitcase.SetDegree(180);
+    suitcase.SetDegree(178);
     move_backward(5);
     left_turn(165);
+
+    //Changed from 168
     check_heading(170,1);
 
     //Follow line to complete fuel lever task
     lineFollow();
 
-    left_turn(15);
+    left_turn(10);
     move_forward(2);
 
     int color = detect();
-    left_turn(15);
+    left_turn(20);
 
     //Square off against tower
 
-    moveUntil();
+    moveUntil(0);
     
     //Press correct ticket button
+ 
     ticket(color);
+
 
     //Passport task
 
@@ -113,13 +113,17 @@ int main(void)
     arm.SetDegree(175);
     check_heading(270,1);
 
+
     if(color==Blue){
 
-        move_backward(6);
+        //Changed from 6
+        move_backward(7);
     }else{
-    
-        move_backward(2);
+        
+        //Changed from 2
+        move_backward(3);
     }
+
     check_x(24,MINUS);
 
     passport();
@@ -130,16 +134,16 @@ int main(void)
 
     right_turn(85);
     check_heading(180,1);
-    move_backward(12);
-    right_turn(90);
 
-    lmp*=2;
-    rmp*=2;
-    moveUntil();
-    lmp/=2;
-    rmp/=2;
+    lmp=50;
+    rmp=50;
+    move_backward(11);
+    lmp=25;
+    rmp=25;
 
+    right_turn(85);
 
+    moveUntil(6);
     move_backward(.5);
     right_turn(85);
 
@@ -150,7 +154,7 @@ int main(void)
     move_forward(20);
     right_turn(40);
     move_forward(12);
-    left_turn(80);
+    left_turn(77);
     move_forward(20);
     
     Sleep(2.0); //Wait for counts to stabilize

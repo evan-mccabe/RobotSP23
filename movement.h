@@ -117,7 +117,15 @@ void right_turn(int degrees){
 
 }
 
-void moveUntil(){
+void moveUntil(int inches){
+
+    if(inches!=0){
+    rmp=75;
+    lmp=75;
+    move_forward(inches);
+    rmp=25;
+    lmp=25;
+    }
 
     float startTime = TimeNow();
 
