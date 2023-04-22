@@ -79,8 +79,8 @@ void left_turn(float degrees){
     left_encoder.ResetCounts();
 
     //Set both motors to desired percent
-    right_motor.SetPercent(rmp);
-    left_motor.SetPercent(-1*lmp);
+    right_motor.SetPercent(50);
+    left_motor.SetPercent(-50);
 
     //While the average of the left and right encoder is less than counts,
     //keep running motors
@@ -103,8 +103,8 @@ void right_turn(int degrees){
     left_encoder.ResetCounts();
 
     //Set both motors to desired percent
-    right_motor.SetPercent(-1*rmp);
-    left_motor.SetPercent(lmp);
+    right_motor.SetPercent(-50);
+    left_motor.SetPercent(50);
 
     //While the average of the left and right encoder is less than counts,
     //keep running motors
@@ -351,7 +351,9 @@ void ticket(int c){
     if (c == Blue){
 
         LCD.WriteLine("Blue");
-        move_backward(11);
+
+        //11
+        move_backward(10.5);
         right_turn(45);
         float t = TimeNow();
 
@@ -370,7 +372,9 @@ void ticket(int c){
     if (c == Red){
 
         LCD.WriteLine("Red");
-        move_backward(17.5);
+
+        //17.5
+        move_backward(17);
         right_turn(45);
 
         float t = TimeNow();
@@ -413,12 +417,9 @@ void fuel(){
 
         //Flip lever down 
         arm.SetDegree(1); 
-        Sleep(.5);
+        Sleep(5.5);
         //Flip lever back up
         arm.SetDegree(25);
-        Sleep(.5);
-        //Flip lever back down
-        arm.SetDegree(1);
 
 
         Sleep(.5);
@@ -443,12 +444,9 @@ void fuel(){
 
         //Flip lever down 
         arm.SetDegree(1); 
-        Sleep(.5);
+        Sleep(5.5);
         //Flip lever back up
         arm.SetDegree(25);
-        Sleep(.5);
-        //Flip lever back down
-        arm.SetDegree(1);
 
 
         Sleep(.5);
@@ -473,12 +471,9 @@ void fuel(){
 
         //Flip lever down 
         arm.SetDegree(1); 
-        Sleep(.5);
+        Sleep(5.5);
         //Flip lever back up
         arm.SetDegree(25);
-        Sleep(.5);
-        //Flip lever back down
-        arm.SetDegree(1);
 
 
         Sleep(.5);

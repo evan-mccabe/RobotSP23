@@ -30,7 +30,6 @@ int main(void)
     arm.SetMin(500);
     arm.SetMax(2500);
 
-    
     LCD.WriteLine("Touch the screen to start");
     while(!LCD.Touch(&x,&y)); //Wait for screen to be pressed
     while(LCD.Touch(&x,&y)); //Wait for screen to be unpressed
@@ -47,7 +46,9 @@ int main(void)
 
     //Position to back up to fuel levers
     move_forward(17.5);
-    right_turn(130);
+
+    //130
+    right_turn(135);
     check_heading(90,1);
     arm.SetDegree(45);
     move_forward(.5);
@@ -61,18 +62,24 @@ int main(void)
     moveUntil(7);
 
     move_backward(.5);
-    left_turn(85);
+
+    //85
+    left_turn(90);
     check_heading(180,1);
     ramp(26);
 
     //Navigate up the ramp and complete suitcase task
     check_heading(180,1);
     //check_y(49.5,PLUS);
-    left_turn(87);
+
+    //87
+    left_turn(90);
     check_heading(270,1);
     move_forward(15);
     check_x(13,MINUS);
-    left_turn(88);
+
+    //88
+    left_turn(90);
 
     //Square off against suitcase bin
     moveUntilOne();
@@ -82,6 +89,7 @@ int main(void)
     Sleep(.5);
     suitcase.SetDegree(178);
     move_backward(5);
+
     left_turn(165);
 
     //Changed from 168
@@ -94,7 +102,9 @@ int main(void)
     move_forward(2);
 
     int color = detect();
-    left_turn(20);
+
+    //20
+    left_turn(15);
 
     //Square off against tower
 
@@ -109,7 +119,9 @@ int main(void)
 
     move_backward(3);
     check_y(61,PLUS);
-    left_turn(85);
+
+    //85
+    left_turn(90);
     arm.SetDegree(175);
     check_heading(270,1);
 
@@ -132,7 +144,8 @@ int main(void)
     
     //Go to the final button
 
-    right_turn(85);
+    //85
+    right_turn(90);
     check_heading(180,1);
 
     lmp=50;
@@ -141,20 +154,27 @@ int main(void)
     lmp=25;
     rmp=25;
 
-    right_turn(85);
+    //85
+    right_turn(90);
 
     moveUntil(6);
     move_backward(.5);
-    right_turn(85);
+
+    //85
+    right_turn(87);
 
     //Speed up
     rmp*=2;
     lmp*=2;
 
     move_forward(20);
-    right_turn(40);
+
+    //40
+    right_turn(45);
     move_forward(12);
-    left_turn(77);
+
+    //77
+    left_turn(90);
     move_forward(20);
     
     Sleep(2.0); //Wait for counts to stabilize
